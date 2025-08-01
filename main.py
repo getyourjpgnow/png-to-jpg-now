@@ -3,7 +3,6 @@
 
 from fastapi import FastAPI, File, UploadFile, Request
 from fastapi.responses import FileResponse, HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import shutil, os, uuid
@@ -21,7 +20,8 @@ app.add_middleware(
 UPLOAD_DIR = "temp_uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# Removed static mount — not needed for now
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def homepage():
